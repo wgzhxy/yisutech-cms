@@ -88,6 +88,7 @@
     </group>
 	-->
     <script>
+		<!--
 		<generate template="placeholder.properties" destfile="WEB-INF/classes/placeholder.properties" />
 		<generate template="WEB-INF/web.xml" destfile="WEB-INF/web.xml" charset="UTF-8" />
 		<generate template="logback.xml.vm" destfile="WEB-INF/classes/logback.xml"/>
@@ -98,6 +99,7 @@
 		<generate template="META-INF/biz/spring-common.xml" destfile="WEB-INF/classes/biz/spring-common.xml"/>
 		<generate template="META-INF/hsf/hsf-provider.xml" destfile="WEB-INF/classes/hsf/hsf-provider.xml"/>
         <generate template="META-INF/hsf/hsf-comsumer.xml" destfile="WEB-INF/classes/hsf/hsf-comsumer.xml"/>
+        -->
 	</script>
 
 </config>
