@@ -72,7 +72,7 @@
                 <version>${autoconfig-plugin-version}</version>
                 <configuration>
                     <exploding>true</exploding>
-                    <explodedDirectory>target/ant-war</explodedDirectory>
+                    <explodedDirectory>target/app-war</explodedDirectory>
                 </configuration>
                 <executions>
                     <execution>
