@@ -1,4 +1,4 @@
-package com.yisutech.erp.cms.dao;
+package com.yisutech.erp.cms.framework.app;
 
 /**
  * Hello world!
