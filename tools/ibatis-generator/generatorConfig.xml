@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<context id="iworkCoreTables" targetRuntime="MyBatis3">
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://tddl.daily2.alibaba.net:3306/TMALL_ANT_APP?useUnicode=true" userId="TMALL_ANT_APP"
+			password="123456">
+		</jdbcConnection>
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		<javaModelGenerator targetPackage="com.yisutech.erp.cms.dao.auto.dataobject"
+			targetProject="../../../dao/src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="false" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="mybatis/auto" targetProject="../../../dao/src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.tmall.wireless.ant.dao.auto.dao"
+			implementationPackage="com.tmall.wireless.ant.dao.auto.dao.ibatis"
+			targetProject="../../../dao/src/main/java">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+        <table tableName="ant_group" domainObjectName="AntGroup">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+		<!--
+		<table tableName="ant_dictionary" domainObjectName="AntDictionary">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+		
+		<table tableName="ant_slot" domainObjectName="AntSlot">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        
+        <table tableName="ant_beta" domainObjectName="AntBeta">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+		 
+        <table tableName="ant_config" domainObjectName="AntConfig">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+		 
+        <table tableName="ant_config_history" domainObjectName="AntConfigHistory">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+
+        <table tableName="ant_group" domainObjectName="AntGroup">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+
+        <table tableName="ant_release_config" domainObjectName="AntReleaseConfig">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        -->
+	</context>
+</generatorConfiguration>

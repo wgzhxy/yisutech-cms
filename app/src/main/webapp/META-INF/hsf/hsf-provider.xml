@@ -1,0 +1,52 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       " default-autowire="byName">
+
+    <bean id="hsfAntBaseServiceApi" class="com.tmall.wireless.ant.api.impl.AntBaseServiceApiImpl"/>
+    <bean id="hsfAntCoreServiceApi" class="com.tmall.wireless.ant.api.impl.AntCoreServiceApiImpl"/>
+    <bean id="hsfAntOpsServiceApi" class="com.tmall.wireless.ant.api.impl.AntOpsServiceApiImpl"/>
+    <bean id="hsfAbtestService" class="com.tmall.wireless.ant.api.impl.manager.AntABTestServiceImpl"/>
+
+    <bean class="com.taobao.hsf.app.spring.util.HSFSpringProviderBean"
+          init-method="init">
+        <property name="serviceInterface"
+                  value="com.tmall.wireless.ant.api.AntBaseServiceApi"/>
+        <property name="target" ref="hsfAntBaseServiceApi"/>
+        <property name="serviceVersion" value="${ant_config_service_version}"/>
+        <property name="serializeType" value="hessian"/>
+        <property name="corePoolSize" value="200"/>
+    </bean>
+
+    <bean class="com.taobao.hsf.app.spring.util.HSFSpringProviderBean"
+          init-method="init">
+        <property name="serviceInterface"
+                  value="com.tmall.wireless.ant.api.AntCoreServiceApi"/>
+        <property name="target" ref="hsfAntCoreServiceApi"/>
+        <property name="serviceVersion" value="${ant_config_service_version}"/>
+        <property name="serializeType" value="hessian"/>
+        <property name="corePoolSize" value="1000"/>
+    </bean>
+
+    <bean class="com.taobao.hsf.app.spring.util.HSFSpringProviderBean"
+          init-method="init">
+        <property name="serviceInterface"
+                  value="com.tmall.wireless.ant.api.AntOpsServiceApi"/>
+        <property name="target" ref="hsfAntOpsServiceApi"/>
+        <property name="serviceVersion" value="${ant_config_service_version}"/>
+        <property name="serializeType" value="hessian"/>
+        <property name="corePoolSize" value="200"/>
+    </bean>
+
+    <bean class="com.taobao.hsf.app.spring.util.HSFSpringProviderBean"
+          init-method="init">
+        <property name="serviceInterface"
+                  value="com.tmall.wireless.ant.manager.api.AntABTestService"/>
+        <property name="target" ref="hsfAbtestService"/>
+        <property name="serviceVersion" value="${ant_config_service_version}"/>
+        <property name="serializeType" value="hessian"/>
+        <property name="corePoolSize" value="200"/>
+    </bean>
+
+</beans>

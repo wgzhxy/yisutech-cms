@@ -1,0 +1,31 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       default-autowire="byName">
+
+    <bean class="com.alibaba.oplog.pub.collector.client.EmbedLogClient" factory-method="getInstance">
+        <property name="systemId" value="${ant_oplog_systemId}"/>
+        <property name="systemName" value="${ant_oplog_systemName}"/>
+    </bean>
+
+    <bean id="accessControlService" class="com.taobao.hsf.app.spring.util.HSFSpringConsumerBean" init-method="init">
+        <property name="interfaceName" value="com.alibaba.buc.api.AccessControlService"/>
+        <property name="version" value="${buc_acl_service_version}"/>
+    </bean>
+
+    <bean id="enhancedUserQueryService" class="com.taobao.hsf.app.spring.util.HSFSpringConsumerBean" init-method="init">
+        <property name="interfaceName" value="com.alibaba.buc.api.EnhancedUserQueryService"/>
+        <property name="version" value="${buc_uc_service_version}"/>
+        <property name="group" value="${buc_uc_service_group}"/>
+    </bean>
+
+    <bean id="httpClientHelper" class="com.tmall.wireless.ant.framework.http.HttpClientHelper" init-method="init">
+        <property name="enableSSL" value="true"/>
+        <property name="targetHost" value="${buc.sso.auth.uri}"/>
+    </bean>
+
+    <bean id="minskStatusService" class="com.taobao.hsf.app.spring.util.HSFSpringConsumerBean"
+          init-method="init">
+        <property name="interfaceName" value="com.tmall.wireless.minsk.state.api.MinskStatusService"/>
+        <property name="version" value="${minsk.config.service.version}"/>
+    </bean>
+</beans>

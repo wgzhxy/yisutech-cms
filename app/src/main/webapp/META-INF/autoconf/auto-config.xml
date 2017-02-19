@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config description="ant auto config">
+
+	<!-- <property name="app.home" defaultValue="/Users/Justin" />
+
+	<group name="buc">
+		<property name="buc.acl.service.version" defaultValue="2.0.0.daily" />
+		<property name="buc.acl.no.permission.url" defaultValue="https://acl-test.alibaba-inc.com/apply/instance/needApply.htm"/>
+		<property name="buc.uc.service.version" defaultValue="1.0.0.daily" />
+		<property name="buc.uc.service.group" defaultValue="DAILYGROUP" />
+	</group>
+
+	<group name="log">
+		<property name="app.log" defaultValue="./ant/logs"/>
+		<property name="app.home" defaultValue="./ant"/>
+		<property name="ant.log.level" defaultValue="DEBUG" />
+	</group>
+
+	<group name="oplog">
+		<property name="ant.oplog.systemId" defaultValue="Oplog_ant" />
+		<property name="ant.oplog.systemName" defaultValue="ant" />
+	</group>
+
+	<group name="service">
+		<property name="ant.config.service.version" defaultValue="1.0.0.dev" />
+	</group>
+
+	<group name="common">
+		<property name="ant.deployEnv" defaultValue="daily" />
+	</group>
+
+	<group name="security">
+		<property name="buc.sso.server.url" defaultValue="https://login-test.alibaba-inc.com" />
+		<property name="buc.sso.client.key" defaultValue="44d975b6-1ca3-460d-992f-d7a3e322da6d" />
+		<property name="buc.sso.logout.url" defaultValue="https://login-test.alibaba-inc.com/ssoLogout.htm" />
+		<property name="buc.sso.server.port" defaultValue="80" />
+		<property name="buc.sso.app.code" defaultValue="0ad13778284c4e5c89eec564a8742e2a" />
+		<property name="buc.sso.auth.url"
+				  defaultValue="https://login-test.alibaba-inc.com/authorize/validateAccessToken.do"/>
+		<property name="buc.sso.auth.uri" defaultValue="https://login-test.alibaba-inc.com"/>
+	</group>
+
+	<group name="tair">
+		<property name="ant.tair.mdb.configId" defaultValue="mdbcomm-daily"/>
+		<property name="ant.tair.mdb.namespace" defaultValue="5241"></property>
+		<property name="ant.tair.ldb.configId" defaultValue="ldbcommon-daily"/>
+		<property name="ant.tair.ldb.namespace" defaultValue="4170"></property>
+	</group>
+
+	<group name="dts">
+		<property name="ant.dtsclient.groupId" defaultValue="1-3-3-2868"></property>
+	</group>
+
+	<group name="notify">
+		<property name="ant.notify.topic" defaultValue="ant.sdk.notify"></property>
+		<property name="ant.notify.groupId" defaultValue="P-Ant-guangzhong-Best"></property>
+	</group>
+
+	<group name="tddl">
+		<property name="ant.tddl.appName" defaultValue="TMALL_ANT_APP"></property>
+		<property name="ant.tddl.group" defaultValue="TMALL_ANT_GROUP"></property>
+	</group>
+
+	<group name="acl">
+		<property name="alibaba.acl.hsf.version" defaultValue="2.0.0.daily"></property>
+		<property name="alibaba.acl.hsf.group" defaultValue="HSF"></property>
+		<property name="alibaba.acl.hsf.consumer.timeout" defaultValue="5000"></property>
+		<property name="alibaba.acl.access.key" defaultValue="ant-2@0(nUx2vCMlE@p8d2&amp;EaeMVNr"></property>
+		<property name="alibaba.acl.enviroment" defaultValue="DEV"></property>
+		<property name="alibaba.acl.auth.url"
+				  defaultValue="https://acl.alibaba-inc.com/apply/instance/needApply.htm"></property>
+	</group>
+
+	<group name="minsk">
+		<property name="minsk.config.service.version" defaultValue="1.0.0.daily"/>
+		<property name="minsk.client.appName" defaultValue="tmallant"/>
+		<property name="minsk.client.key" defaultValue="05d2964c013a48448167fcd374cbc411"/>
+	</group>
+
+	<group name="dts">
+		<property name="ant_dtsclient_groupId" defaultValue="1-3-3-2868"/>
+	</group>
+
+    <group name="minsk.hsf">
+        <property name="minsk.hsf.version" defaultValue="1.0.0.daily"/>
+        <property name="minsk.hsf.group" defaultValue="HSF"/>
+    </group>
+	-->
+    <script>
+		<generate template="placeholder.properties" destfile="WEB-INF/classes/placeholder.properties" />
+		<generate template="WEB-INF/web.xml" destfile="WEB-INF/web.xml" charset="UTF-8" />
+		<generate template="logback.xml.vm" destfile="WEB-INF/classes/logback.xml"/>
+		<generate template="META-INF/biz/spring-mtop.xml" destfile="WEB-INF/classes/biz/spring-mtop.xml"/>
+		<generate template="META-INF/biz/spring-dts.xml" destfile="WEB-INF/classes/biz/spring-dts.xml"/>
+		<generate template="META-INF/biz/spring-notify.xml" destfile="WEB-INF/classes/biz/spring-notify.xml"/>
+		<generate template="META-INF/biz/spring-tair.xml" destfile="WEB-INF/classes/biz/spring-tair.xml"/>
+		<generate template="META-INF/biz/spring-common.xml" destfile="WEB-INF/classes/biz/spring-common.xml"/>
+		<generate template="META-INF/hsf/hsf-provider.xml" destfile="WEB-INF/classes/hsf/hsf-provider.xml"/>
+        <generate template="META-INF/hsf/hsf-comsumer.xml" destfile="WEB-INF/classes/hsf/hsf-comsumer.xml"/>
+	</script>
+
+</config>

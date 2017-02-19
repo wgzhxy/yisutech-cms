@@ -1,0 +1,33 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+       "
+       default-autowire="byName">
+
+    <bean id="antTairManager" class="com.taobao.tair.impl.mc.MultiClusterTairManager" init-method="init">
+        <property name="configID">
+            <value>${ant_tair_mdb_configId}</value>
+        </property>
+        <property name="dynamicConfig">
+            <value type="java.lang.Boolean">true</value>
+        </property>
+    </bean>
+
+    <bean id="antLdbTairManager" class="com.taobao.tair.impl.mc.MultiClusterTairManager" init-method="init">
+        <property name="configID">
+            <value>${ant_tair_ldb_configId}</value>
+        </property>
+        <property name="dynamicConfig">
+            <value type="java.lang.Boolean">true</value>
+        </property>
+    </bean>
+
+    <bean id="tairLock" class="com.tmall.wireless.ant.framework.tair.TairLock">
+        <property name="tairManager" ref="antLdbTairManager"/>
+        <property name="prefix" value="ant-lock"/>
+        <property name="namespace" value="${ant_tair_ldb_namespace}"/>
+    </bean>
+
+</beans>
