@@ -1,4 +1,4 @@
-package com.yisutech.cms.app;
+package com.yisutech.erp.cms.app;
 
 /**
  * Created by guangzhong.wgz on 17/2/12.

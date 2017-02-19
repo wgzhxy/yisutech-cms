@@ -110,7 +110,7 @@
         </mvc:interceptor> -->
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.yisutech.cms.app.interceptor.AuthInterceptor">
+            <bean class="com.yisutech.erp.cms.app.interceptor.AuthInterceptor">
                 <!-- 不需要权限验证的地址  -->
                 <property name="excludeUrls">
                     <list>

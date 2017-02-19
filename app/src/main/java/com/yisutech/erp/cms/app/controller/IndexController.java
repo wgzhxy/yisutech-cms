@@ -1,4 +1,4 @@
-package com.yisutech.cms.app.controller;
+package com.yisutech.erp.cms.app.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.Mapping;

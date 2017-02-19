@@ -1,4 +1,4 @@
-package com.yisutech.cms.app;
+package com.yisutech.erp.cms.app;
 
 /**
  * Hello world!

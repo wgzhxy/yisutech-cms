@@ -12,7 +12,7 @@
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
-		<javaModelGenerator targetPackage="com.yisutech.erp.cms.dao.auto.dataobject"
+		<javaModelGenerator targetPackage="com.yisutech.cms.dao.auto.dataobject"
 			targetProject="../../../dao/src/main/java">
 			<property name="enableSubPackages" value="false" />
 			<property name="trimStrings" value="false" />
