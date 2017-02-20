@@ -12,6 +12,14 @@ public interface HttpClientService {
      * POST请求资源
      *
      * @param resourcePath 资源地址
+     * @return
+     */
+    public String postRequest(String resourcePath);
+
+    /**
+     * POST请求资源
+     *
+     * @param resourcePath 资源地址
      * @param properties   资源属性
      * @return
      */

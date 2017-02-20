@@ -10,11 +10,26 @@ import java.util.Map;
  */
 public interface SlingCurdService {
 
-    public void addResource(Map<String, Object> resource);
+    /**
+     * @param resourcePath       资源路径
+     * @param resourceProperties 资源
+     */
+    public String addResource(String resourcePath, Map<String, Object> resourceProperties);
 
-    public Object getResource(String resourcePath);
+    /**
+     * @param resourcePath
+     * @return
+     */
+    public String getResource(String resourcePath);
 
-    public void delResource(String resourcePath);
+    /**
+     * @param resourcePath
+     */
+    public String delResource(String resourcePath);
 
-    public List<Object> queryResources(String query);
+    /**
+     * @param query
+     * @return
+     */
+    public List<String> queryResources(String query);
 }
