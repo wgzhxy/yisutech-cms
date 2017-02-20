@@ -1,15 +1,6 @@
 package com.yisutech.erp.cms.framework.http;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.URISyntaxException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
+import com.yisutech.erp.cms.framework.utils.FwConstant;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -28,10 +19,19 @@ import org.apache.http.entity.mime.content.FileBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
-
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author guangzhong.wgz
@@ -96,26 +96,35 @@ public class HttpClientUtil {
         HttpPost httpPost = new HttpPost(url);
         ArrayList<NameValuePair> pairs = covertParams2NVPS(params);
         httpPost.setEntity(buildMultipartEntity(pairs, null));
-        httpPost.setHeader("Authorization", "Basic YWRtaW46YWRtaW4=");
-        httpPost.setHeader("Accept", "*/*");
-        httpPost.setHeader("User-Agent", "curl/7.43.0");
-        httpPost.setHeader("Host", "localhost:8080");
+        initHeader(httpPost);
         return getResult(httpPost);
     }
 
-    public static String postContent(String url, Map<String, Object> headers, Map<String, Object> params)
+    public static String postContent(String url, Map<String, Object> params, Map<String, File> files) throws UnsupportedEncodingException {
+        HttpPost httpPost = new HttpPost(url);
+        ArrayList<NameValuePair> pairs = covertParams2NVPS(params);
+        httpPost.setEntity(buildMultipartEntity(pairs, files));
+        initHeader(httpPost);
+        return getResult(httpPost);
+    }
+
+    public static String postContent(String url, Map<String, Object> params, Map<String, File> files, String authorization)
             throws UnsupportedEncodingException {
         HttpPost httpPost = new HttpPost(url);
+        ArrayList<NameValuePair> pairs = covertParams2NVPS(params);
+        httpPost.setEntity(buildMultipartEntity(pairs, files));
+        initHeader(httpPost);
+        return getResult(httpPost);
+    }
 
+    public static String postContentWithHeader(String url, Map<String, Object> headers, Map<String, Object> params)
+            throws UnsupportedEncodingException {
+        HttpPost httpPost = new HttpPost(url);
         for (Map.Entry<String, Object> param : headers.entrySet()) {
             httpPost.addHeader(param.getKey(), String.valueOf(param.getValue()));
         }
-
         ArrayList<NameValuePair> pairs = covertParams2NVPS(params);
-
         httpPost.setEntity(new UrlEncodedFormEntity(pairs, UTF_8));
-
-
         return getResult(httpPost);
     }
 
@@ -238,4 +247,13 @@ public class HttpClientUtil {
 
     }
 
+    private static void initHeader(HttpRequestBase httpRequestBase) {
+        httpRequestBase.setHeader("Authorization", "Basic YWRtaW46YWRtaW4=");
+        httpRequestBase.setHeader("Accept", "*/*");
+    }
+
+    private static void initHeader(HttpRequestBase httpRequestBase, String authorization) throws UnsupportedEncodingException {
+        httpRequestBase.setHeader("Authorization", "Basic " + Base64.encodeBase64String(authorization.getBytes(FwConstant.UTF_8)));
+        httpRequestBase.setHeader("Accept", "*/*");
+    }
 } 
