@@ -11,12 +11,7 @@
       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
     <!-- 注解扫描包 , 多个写法:com.zsx.web.*,org.weixin.*  (以完成bean创建和自动依赖注入的功能)-->
-    <context:component-scan base-package="com.yisutech.erp.cms.app.controller.*">
-        <!-- springMVC配置文件中将Service注解给去掉 -->
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-    </context:component-scan>
+    <context:component-scan base-package="com.yisutech.erp.cms.app"/>
 
     <!-- <context:component-scan /> -->
     <!-- 扫描指定的包中的类上的注解，常用的注解有： -->
@@ -55,13 +50,64 @@
     <!-- 静态资源访问，方案2 (表示不对静态资源如CSS、JS、HTML等进行拦截) -->
     <mvc:default-servlet-handler/>
 
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+            <bean class="com.yisutech.erp.cms.app.converter.FastJsonAndJsonpHttpMessageConverter">
+                <property name="supportedMediaTypes" value="application/json"/>
+            </bean>
+            <bean class="com.yisutech.erp.cms.app.converter.FastJsonAndJsonpHttpMessageConverter">
+                <property name="supportedMediaTypes" value="application/javascript"/>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
-    <!-- 视图解释类 -->
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/"></property>
-        <!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑 -->
-        <property name="suffix" value=".jsp"></property>
+    <!-- if you use annotation you must configure following setting -->
+    <!-- 设置freeMarker的配置文件路径 -->
+    <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="location" value="classpath:freemarker.properties"/>
+    </bean>
+
+    <bean id="xmlEscape" class="freemarker.template.utility.XmlEscape"/>
+
+    <!-- Freemarker配置 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="freemarkerSettings" ref="freemarkerConfiguration"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="templateLoaderPath" value="/WEB-INF/pages/"/>
+        <property name="freemarkerVariables">
+            <map>
+                <entry key="xml_escape" value-ref="xmlEscape"/>
+            </map>
+        </property>
+    </bean>
+
+    <!-- 视图配置 在list中按照配置的先后顺序 -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="viewResolvers">
+            <list>
+                <!-- 配置freeMarker视图解析器 -->
+                <bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+                    <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+                    <property name="contentType" value="text/html; charset=utf-8"/>
+                    <property name="cache" value="false"/>
+                    <property name="prefix" value=""/>
+                    <property name="suffix" value=".html"/>
+                    <property name="order" value="1"/>
+
+                    <property name="allowSessionOverride" value="true"/>
+                    <property name="allowRequestOverride" value="true"/>
+                    <property name="exposeSpringMacroHelpers" value="false"/>
+                    <property name="exposeRequestAttributes" value="true"/>
+                    <property name="exposeSessionAttributes" value="true"/>
+                    <property name="requestContextAttribute" value="request"/>
+                </bean>
+                <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+                    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+                    <property name="prefix" value="/"/>
+                    <property name="suffix" value=".jsp"/>
+                </bean>
+            </list>
+        </property>
     </bean>
 
     <!-- Spring MVC JSON配置 -->

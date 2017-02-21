@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspace>
+    <!-- packages used to filter classes, then container start faster! -->
+    <deploy package="com.alibaba">
+        <mapping src="dao-1.0-SNAPSHOT.jar" dest="/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/dao/target/classes" />
+        <mapping src="tools-1.0-SNAPSHOT.jar" dest="/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/tools/target/classes" />
+        <mapping src="biz-1.0.0-SNAPSHOT.jar" dest="/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/biz/target/classes" />
+        <mapping src="framework-1.0.0-SNAPSHOT.jar" dest="/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/framework/target/classes" />
+        <mapping src="webroot" dest="/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/app/src/main/webapp" />
+        <mapping src="WEB-INF/classes" dest="/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/app/target/classes" />
+        <mapping src="WEB-INF/pages" dest="/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/app/src/main/webapp/WEB-INF/pages" />
+    </deploy>
+
+    <plugins>
+        <plugin name="spring_plugin"></plugin>
+        <plugin name="ibatis_plugin"></plugin>
+        <plugin name="webx3_plugin"></plugin>
+        <plugin name="sofa_plugin"></plugin>
+    </plugins>
+</workspace>

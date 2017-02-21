@@ -16,4 +16,13 @@ public class FwConstant {
      * Sling 管理用户
      */
     public static String SLING_USER_PWD = "admin:admin";
+
+    /**
+     * jsonp回调函数名称
+     */
+    public static final String CALLBACK_FUNCTION = "callback";
+    /**
+     * uri
+     */
+    public static final String REQUEST_URI = "request_uri";
 }

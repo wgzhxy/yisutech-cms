@@ -7,10 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * Created by guangzhong.wgz on 17/2/20.
  */
 @Controller
-@RequestMapping("/")
+@RequestMapping("/sling")
 public class SlingCurdController {
-
-
 }
 
 
