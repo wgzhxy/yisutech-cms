@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>A/B实验管理时平台 － 天猫持续改进平台</title>
+
+<head>
+    <!-- header -->
+<#include "/WEB-INF/pages/cms/comm/header.ftl">
+</head>
+
 <body>
-<h1>CMS管理系统</h1>
-<h2>sling 创建</h2>
+<script>
+    with (document)with (body)with (insertBefore(createElement("script"), firstChild))setAttribute("exparams", "category=&userid=&aplus&yunid=&&trid=0bb0beaf14792012159683753e&asid=AQAAAAC/0SpY6zfgPQAAAABhLkqoX5y7LA==", id = "tb-beacon-aplus", src = (location > "https" ? "//g" : "//g") + ".alicdn.com/alilog/mlog/aplus_v2.js")
+</script>
+<div id="wrapper">
+    <!-- menu -->
+<#include "/WEB-INF/pages/cms/comm/menu.ftl">
 
-<form method="POST" action="http://localhost:8080/sling/some/new/content/testNew" enctype="multipart/form-data">
-    <input type="text" name="title" value="测试一下"/> <br/>
-    <textarea type="text" name="text" tips="这是内容，请输入"></textarea> <br/>
-    <input type="submit" value="创建内容">
-</form>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header"><span style="color:darkgray; font-family:微软雅黑">个人视图</span></h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
 
-<h2>sling 创建用户</h2>
-<form method="POST" action="http://localhost:8080/sling/system/userManager/user.create.html"
-      enctype="multipart/form-data">
-    <input type="text" name=":name" value="wgzhxy"/> <br/>
-    <input type="text" name="pwd" value="111111"/> <br/>
-    <input type="text" name="pwdConfirm" value="111111"/> <br/>
-    <input type="text" name="anyproperty1" value="value1"/> <br/>
-    <input type="submit" value="创建用户">
-</form>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /#page-wrapper -->
+</div>
+<!-- footer -->
+<#include "/WEB-INF/pages/cms/comm/footer.ftl">
+<script>
+    $("#but2").click(function () {
+        $.ajax({
+            url: "/ant/conf/queryConfig.jsonp",
+            data: {
+                configId: 1
+            },
+            type: "get",
+            async: false,
+            dataType: "jsonp",
+            success: function (json) {
+                alert(json.success);
+            },
+            error: function (e) {
+                alert("error" + e);
+            }
+        });
+    });
+</script>
 
-<h2>sling </h2>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration encoding="utf-8" scan="true" scanPeriod="10 seconds">
 
-    <property name="APP_Name" value="cms"/>
+    <property name="APP_Name" value="yisutech-cms"/>
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>

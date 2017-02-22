@@ -12,3 +12,7 @@
 
    1） 先启动sling服务
    2） 打包项目发布到tomcat7 +ß
+
+
+-Dantx.properties=/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/antx.properties
+-Dhotcode.confFile=/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/workspace.xml
