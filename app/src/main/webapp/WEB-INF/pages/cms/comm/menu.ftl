@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../home/index.html?type=index">内容管理 v1.0</a>
+        <a class="navbar-brand" href="../home/index.html?type=index">易速云内容管理系统 v1.0</a>
     </div>
     <!-- /.navbar-header -->
 
