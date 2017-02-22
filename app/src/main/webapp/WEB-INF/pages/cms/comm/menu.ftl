@@ -16,13 +16,13 @@
         <li class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                 <i class="fa fa-tasks fa-fw"></i>
-                <#if pubEnv == "online">
-                    线上环境
-                    <#elseif pubEnv == "pre">
-                        预发环境
-                        <#elseif pubEnv == "daily">
-                            日常环境
-                </#if>
+            <#if pubEnv == "online">
+                线上环境
+            <#elseif pubEnv == "pre">
+                预发环境
+            <#elseif pubEnv == "daily">
+                日常环境
+            </#if>
                 <i class="fa fa-caret-down"></i>
             </a>
             <ul class="dropdown-menu dropdown-user">
@@ -123,6 +123,17 @@
                     <a href="../home/manageAntList.html?type=manageAntList"><i class="fa fa-edit fa-fw"></i> 字典管理</a>
                 </li>
                 <li>
+                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 机构/部门管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="../home/reports.html?type=reports"> 机构管理</a>
+                        </li>
+                        <li>
+                            <a href="../home/autoReports.html?type=autoReports"> 部门管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
                     <a href="#"><i class="fa fa-files-o fa-fw"></i> 系统设置<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
@@ -138,18 +149,13 @@
                     <!-- /.nav-second-level -->
                 </li>
                 <li>
-                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 机构/部门管理<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="../home/reports.html?type=reports"> 机构管理</a>
-                        </li>
-                        <li>
-                            <a href="../home/autoReports.html?type=autoReports"> 部门管理</a>
-                        </li>
-                    </ul>
+                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 企业私有云同步</a>
                 </li>
                 <li>
-                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 企业私有云同步<span class="fa arrow"></span></a>
+                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 系统监控</a>
+                </li>
+                <li>
+                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 分布式设置</a>
                 </li>
             </ul>
         </div>
