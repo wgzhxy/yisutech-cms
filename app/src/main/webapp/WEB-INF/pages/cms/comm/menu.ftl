@@ -7,7 +7,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="../home/index.html?type=index">天猫实验管理平台 v1.0</a>
+        <a class="navbar-brand" href="../home/index.html?type=index">内容管理 v1.0</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -89,62 +89,41 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="../home/index.html?type=index"><i class="fa fa-dashboard fa-fw"></i> 个人视图</a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 实验指标<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 文档库<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="../home/charts.html?type=2"> 所有指标</a>
+                            <a href="../home/charts.html?type=2"> 资源查询</a>
                         </li>
                         <li>
-                            <a href="../home/charts.html?type=1"> 离线指标</a>
-                        </li>
-                        <li>
-                            <a href="../home/charts.html?type=3"> 离线曝光</a>
-                        </li>
-                        <li>
-                            <a href="../home/charts.html?type=4"> 离线点击</a>
+                            <a href="../home/charts.html?type=1"> 新增资源</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 实验报表<span class="fa arrow"></span></a>
+                    <a href="../home/manageAntList.html?type=manageAntList"><i class="fa fa-edit fa-fw"></i> 工作流</a>
+                </li>
+                <li>
+                    <a href="../home/manageAntList.html?type=manageAntList"><i class="fa fa-edit fa-fw"></i> 用户中心</a>
+                </li>
+                <li>
+                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 用户管理<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="../home/reports.html?type=reports"> 实验离线综合报表</a>
+                            <a href="../home/reports.html?type=reports"> 用户新增</a>
                         </li>
                         <li>
-                            <a href="../home/autoReports.html?type=autoReports"> 自动化指标数据报表</a>
-                        </li>
-                        <li>
-                            <a href="../home/mergeReports.html?type=mergeReports"> 自动合并指标数据报表</a>
+                            <a href="../home/autoReports.html?type=autoReports"> 用户组管理</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="../home/manageAntList.html?type=manageAntList"><i class="fa fa-edit fa-fw"></i> 实验管理</a>
+                    <a href="../home/manageAntList.html?type=manageAntList"><i class="fa fa-edit fa-fw"></i> 角色管理</a>
                 </li>
                 <li>
-                    <a href="../home/calculate.html?type=calculate"><i class="fa fa-table fa-fw"></i> 实验计算</a>
+                    <a href="../home/manageAntList.html?type=manageAntList"><i class="fa fa-edit fa-fw"></i> 字典管理</a>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> 辅助工具<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="../home/queryAnts.html?type=queryAnts"> 白名单管理</a>
-                        </li>
-                        <li>
-                            <a href="../home/whiteList.html?type=whiteList"> 设备白名单</a>
-                        </li>
-                        <li>
-                            <a href="../home/whiteListUser.html?type=whiteListUser"> 用户白名单</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-files-o fa-fw"></i> 运维管理<span class="fa arrow"></span></a>
+                    <a href="#"><i class="fa fa-files-o fa-fw"></i> 系统设置<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="../home/config.html?type=config"> 配置管理</a>
@@ -157,6 +136,20 @@
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
+                </li>
+                <li>
+                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 机构/部门管理<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="../home/reports.html?type=reports"> 机构管理</a>
+                        </li>
+                        <li>
+                            <a href="../home/autoReports.html?type=autoReports"> 部门管理</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="＃"><i class="fa fa-dashboard fa-fw"></i> 企业私有云同步<span class="fa arrow"></span></a>
                 </li>
             </ul>
         </div>

@@ -17,7 +17,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h4 class="page-header"><span style="color:darkgray; font-family:微软雅黑">个人视图</span></h4>
+                <h4 class="page-header"><span style="color:darkgray; font-family:微软雅黑"> 文档库</span></h4>
             </div>
             <!-- /.col-lg-12 -->
         </div>

@@ -64,7 +64,7 @@
     <!-- if you use annotation you must configure following setting -->
     <!-- 设置freeMarker的配置文件路径 -->
     <bean id="freemarkerConfiguration" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
-        <property name="location" value="classpath:freemarker.properties"/>
+        <property name="location" value="/WEB-INF/freemarker.properties"/>
     </bean>
 
     <bean id="xmlEscape" class="freemarker.template.utility.XmlEscape"/>
@@ -73,7 +73,7 @@
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="freemarkerSettings" ref="freemarkerConfiguration"/>
         <property name="defaultEncoding" value="UTF-8"/>
-        <property name="templateLoaderPath" value="/WEB-INF/pages/"/>
+        <property name="templateLoaderPath" value="/"/>
         <property name="freemarkerVariables">
             <map>
                 <entry key="xml_escape" value-ref="xmlEscape"/>

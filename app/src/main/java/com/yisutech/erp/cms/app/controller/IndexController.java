@@ -19,7 +19,7 @@ public class IndexController {
     @RequestMapping("/conf/index")
     public String home() {
         LOG.info("/conf/index");
-        return "cms/index";
+        return "/WEB-INF/pages/cms/index";
     }
 
     @ResponseBody

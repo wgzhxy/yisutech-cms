@@ -3,16 +3,16 @@
 
 <head>
     <!-- header -->
-    <#include "/console/comm/header.html">
-        <link href="../jsoneditor/jsoneditor.css" rel="stylesheet" type="text/css">
-        <script src="../jsoneditor/jsoneditor.js"></script>
+    <#include "/comm/header.ftl">
+    <link href="../jsoneditor/jsoneditor.css" rel="stylesheet" type="text/css">
+    <script src="../jsoneditor/jsoneditor.js"></script>
 </head>
 
 <body>
 
 <div id="wrapper">
     <!-- menu -->
-    <#include "/console/comm/menu.html">
+<#include "/comm/menu.html">
 
     <div id="page-wrapper">
         <div class="row">
@@ -73,7 +73,7 @@
     </div>
 </div>
 <!-- footer -->
-<#include "/console/comm/footer.html">
+<#include "/comm/footer.html">
 
 <script type="application/javascript">
 
