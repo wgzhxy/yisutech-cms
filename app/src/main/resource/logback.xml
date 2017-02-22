@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration encoding="utf-8" scan="true" scanPeriod="10 seconds">
+
+    <property name="APP_Name" value="cms"/>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %class %line %msg %n</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="debug"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/debug.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/debug.log.%d{yyyy-MM-dd}</fileNamePattern>
+            <MaxHistory>60</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %class %line %msg %n</Pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="access"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/access.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/debug.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <MaxHistory>60</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %class %line %msg %n</Pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="fatal"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/fatal.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/fatal.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <MaxHistory>60</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %msg %n</Pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="warn"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/warn.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/warn.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <MaxHistory>60</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %msg %n</Pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="error"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/error.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/error.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <MaxHistory>60</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} %-5level %msg %n</Pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="conf_access"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/conf_access.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/access.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <MaxHistory>60</MaxHistory>
+        </rollingPolicy>
+        <ImmediateFlush>false</ImmediateFlush>
+        <encoder>
+            <Pattern>%d|%msg %n</Pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="conf_async" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="conf_access"/>
+    </appender>
+
+
+    <appender name="conf_push"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/accs_push.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/accs_push.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <MaxHistory>60</MaxHistory>
+        </rollingPolicy>
+        <ImmediateFlush>true</ImmediateFlush>
+        <encoder>
+            <Pattern>%d|%msg %n</Pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <appender name="conf_push_async" class="ch.qos.logback.classic.AsyncAppender">
+        <appender-ref ref="conf_push"/>
+        <appender-ref ref="conf_async"/>
+    </appender>
+
+    <appender name="message"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>./logs/message.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>./logs/message.log.%d{yyyy-MM-dd}
+            </fileNamePattern>
+            <MaxHistory>60</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <Pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{35} - %msg %n
+            </Pattern>
+            <charset>utf-8</charset>
+        </encoder>
+    </appender>
+
+    <logger name="com.yisutech.erp.cms" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="debug"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="error" additivity="false">
+        <level value="ERROR"/>
+        <appender-ref ref="error"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="warn" additivity="false">
+        <level value="WARN"/>
+        <appender-ref ref="warn"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="org.springframework" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="debug"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="access" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="access"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="message" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="message"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="conf_async" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="message"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <logger name="conf_push" additivity="false">
+        <level value="DEBUG"/>
+        <appender-ref ref="message"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <root>
+        <level value="DEBUG"/>
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>
