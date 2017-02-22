@@ -1,0 +1,1 @@
+scp /Users/guangzhong.wgz/antWorkSpace/yisutech-cms/app/target/app.war root@116.62.101.237:/root/app/project

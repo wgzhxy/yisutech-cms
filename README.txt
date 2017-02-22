@@ -16,3 +16,8 @@
 
 -Dantx.properties=/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/antx.properties
 -Dhotcode.confFile=/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/workspace.xml
+
+
+上传安装到服务器：
+
+scp /Users/guangzhong.wgz/antWorkSpace/yisutech-cms/app/target/app.war root@116.62.101.237:/root/app/project
