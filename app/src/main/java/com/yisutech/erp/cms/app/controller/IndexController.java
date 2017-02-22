@@ -12,18 +12,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by guangzhong.wgz on 17/2/18.
  */
 @Controller
+@RequestMapping("/home")
 public class IndexController {
 
     private static Logger LOG = LoggerFactory.getLogger(IndexController.class);
 
-    @RequestMapping("/conf/index")
+    @RequestMapping("index")
     public String home() {
         LOG.info("/conf/index");
         return "/WEB-INF/pages/cms/index";
     }
 
     @ResponseBody
-    @RequestMapping("/conf/getConfig")
+    @RequestMapping("getConfig")
     public Object getConfig() {
         JSONObject obj = new JSONObject();
         obj.put("key", "this is test");
