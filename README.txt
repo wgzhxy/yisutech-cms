@@ -21,3 +21,6 @@
 上传安装到服务器：
 
 scp /Users/guangzhong.wgz/antWorkSpace/yisutech-cms/app/target/app.war root@116.62.101.237:/root/app/project
+
+
+java -Xmx256m -jar jackrabbit-standalone-2.14.0.jar -c /Users/guangzhong.wgz/devSoft/jackrabbit/repository.xml

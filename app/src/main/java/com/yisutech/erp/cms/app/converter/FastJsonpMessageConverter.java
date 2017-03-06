@@ -13,7 +13,7 @@ import java.io.IOException;
 /**
  * Created by guangzhong.wgz on 17/2/17.
  */
-public class FastJsonAndJsonpHttpMessageConverter extends FastJsonHttpMessageConverter {
+public class FastJsonpMessageConverter extends FastJsonHttpMessageConverter {
 
     /**
      * @param obj

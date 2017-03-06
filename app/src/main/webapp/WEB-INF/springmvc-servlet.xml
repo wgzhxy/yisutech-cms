@@ -52,10 +52,10 @@
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="false">
-            <bean class="com.yisutech.erp.cms.app.converter.FastJsonAndJsonpHttpMessageConverter">
+            <bean class="com.yisutech.erp.cms.app.converter.FastJsonpMessageConverter">
                 <property name="supportedMediaTypes" value="application/json"/>
             </bean>
-            <bean class="com.yisutech.erp.cms.app.converter.FastJsonAndJsonpHttpMessageConverter">
+            <bean class="com.yisutech.erp.cms.app.converter.FastJsonpMessageConverter">
                 <property name="supportedMediaTypes" value="application/javascript"/>
             </bean>
         </mvc:message-converters>
