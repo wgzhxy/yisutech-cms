@@ -24,6 +24,13 @@ public class RepositoryFactory {
 
     private static Logger LOG = LoggerFactory.getLogger(RepositoryUtils.class);
 
+    public RepositoryFactory() {
+    }
+
+    public RepositoryFactory(String uri) {
+        this.repoUri = uri;
+    }
+
     /**
      * 初始化实例
      *

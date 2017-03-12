@@ -2,20 +2,12 @@ package com.yisutech.erp.cms.framework;
 
 import com.google.common.collect.Maps;
 import com.yisutech.erp.cms.framework.http.HttpClientUtil;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.NTCredentials;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.client.AuthCache;
-import org.apache.http.client.CredentialsProvider;
-import org.apache.http.client.protocol.HttpClientContext;
-import org.apache.http.impl.auth.BasicScheme;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.junit.*;
+import com.yisutech.erp.cms.framework.http.SlingResponse;
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -28,8 +20,9 @@ public class HttpClientUtilTest {
     @Test
     public void getContent_url() {
         String url = "http://localhost:8080/content/mynode.json";
-        String rspContent = HttpClientUtil.getContent(url);
-        Assert.assertNotNull(rspContent);
+        SlingResponse rspContent = HttpClientUtil.getContent(url);
+        Assert.assertNotNull(rspContent.getStatusCode());
+        Assert.assertTrue(rspContent.getStatusCode() != 500);
     }
 
     @Test
@@ -41,9 +34,10 @@ public class HttpClientUtilTest {
         params.put("title", "some title");
         params.put("text", "some title text");
         try {
-            String rspContent = HttpClientUtil.postContent(url, params);
+            SlingResponse rspContent = HttpClientUtil.postContent(url, params);
             LOG.debug("rspContent {} ", rspContent);
             Assert.assertNotNull(rspContent);
+            Assert.assertTrue(rspContent.getStatusCode() != 500);
         } catch (Throwable e) {
             Assert.fail(e.getMessage());
         }
@@ -52,7 +46,8 @@ public class HttpClientUtilTest {
     @Test
     public void postContent_url() {
         String url = "http://www.baidu.com";
-        String rspContent = HttpClientUtil.postContent(url);
+        SlingResponse rspContent = HttpClientUtil.postContent(url);
         Assert.assertNotNull(rspContent);
+        Assert.assertTrue(rspContent.getStatusCode() != 500);
     }
 }
