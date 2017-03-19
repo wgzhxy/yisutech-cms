@@ -1,9 +1,14 @@
 package com.yisutech.erp.cms.app.controller;
 
+import com.yishtech.erp.cms.biz.common.CmsConstant;
+import com.yishtech.erp.cms.biz.sling.HttpClientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * Created by guangzhong.wgz on 17/3/15.
@@ -12,10 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/DocServer/repository")
 public class ViewDocController {
 
+    @Resource
+    private HttpClientService httpClientService;
+
     @ResponseBody
-    @RequestMapping(value = "/fileinfo/{1-defaultDocNameSpace}/last", method = RequestMethod.POST)
+    @RequestMapping(value = "/fileinfo/{defaultDocNameSpace}/last")
     public String view() {
         // 上传附件
+
         // 返回文档内容
         String lastContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
                 "<ns:document id=\"1-defaultDocNameSpace\" " +
@@ -78,12 +87,23 @@ public class ViewDocController {
         return lastContent;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/file/view/{1-defaultDocNameSpace}/last/content", method = RequestMethod.GET)
-    public String viewContent() {
+    @RequestMapping(value = "/file/view/{defaultDocNameSpace}/last/content")
+    public void viewContent(HttpServletResponse response) {
         // 附件
         String xml = "";
-        return xml;
+        int fileSize = 0;
+        String contentType = "";
+        response.setCharacterEncoding(CmsConstant.UTF_8);
+        response.setContentLength(fileSize);
+        response.setContentType(contentType);
+        try {
+            /*
+            Byte[] contentByte = httpClientService.getRequest();
+            response.getOutputStream().write();
+            */
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
     }
 
 }
