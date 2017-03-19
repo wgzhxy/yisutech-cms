@@ -3,7 +3,7 @@
 
 <head>
     <!-- header -->
-    <#include "/console/comm/header.html">
+    <#include "/cms/console/comm/header.html">
         <!-- DataTables CSS -->
         <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
         <!-- DataTables Responsive CSS -->
@@ -12,7 +12,7 @@
 <body>
 <div id="wrapper">
     <!-- menu -->
-    <#include "/console/comm/menu.html">
+    <#include "/cms/console/comm/menu.html">
 
         <div id="page-wrapper">
             <div class="row">
@@ -144,7 +144,7 @@
 </div>
 
 <!-- footer -->
-<#include "/console/comm/footer.html">
+<#include "/cms/console/comm/footer.html">
 
     <!-- DataTables JavaScript -->
     <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>

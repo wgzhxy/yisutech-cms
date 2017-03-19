@@ -11,7 +11,8 @@
       http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
     <!-- 注解扫描包 , 多个写法:com.zsx.web.*,org.weixin.*  (以完成bean创建和自动依赖注入的功能)-->
-    <context:component-scan base-package="com.yisutech.erp.cms.app"/>
+    <context:component-scan base-package="com.yisutech.erp.cms.app.controller"/>
+    <context:component-scan base-package="com.yishtech.erp.cms.biz.sling"/>
 
     <!-- <context:component-scan /> -->
     <!-- 扫描指定的包中的类上的注解，常用的注解有： -->
@@ -73,7 +74,7 @@
     <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
         <property name="freemarkerSettings" ref="freemarkerConfiguration"/>
         <property name="defaultEncoding" value="UTF-8"/>
-        <property name="templateLoaderPath" value="/"/>
+        <property name="templateLoaderPath" value="/WEB-INF/pages"/>
         <property name="freemarkerVariables">
             <map>
                 <entry key="xml_escape" value-ref="xmlEscape"/>

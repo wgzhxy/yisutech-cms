@@ -64,11 +64,12 @@
     </welcome-file-list>
 
     <!-- 错误跳转页面 -->
+    <!--
     <error-page>
-        <!-- 路径不正确 -->
         <error-code>404</error-code>
         <location>/WEB-INF/errorpage/404.jsp</location>
     </error-page>
+    -->
     <error-page>
         <!-- 没有访问权限，访问被禁止 -->
         <error-code>405</error-code>

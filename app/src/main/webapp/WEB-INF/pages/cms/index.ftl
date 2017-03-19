@@ -3,7 +3,7 @@
 
 <head>
     <!-- header -->
-<#include "/WEB-INF/pages/cms/comm/header.ftl">
+<#include "/cms/comm/header.ftl">
 </head>
 
 <body>
@@ -12,7 +12,7 @@
 </script>
 <div id="wrapper">
     <!-- menu -->
-<#include "/WEB-INF/pages/cms/comm/menu.ftl">
+<#include "/cms/comm/menu.ftl">
 
     <div id="page-wrapper">
         <div class="row">
@@ -38,7 +38,7 @@
     <!-- /#page-wrapper -->
 </div>
 <!-- footer -->
-<#include "/WEB-INF/pages/cms/comm/footer.ftl">
+<#include "/cms/comm/footer.ftl">
 <script>
     $("#but2").click(function () {
         $.ajax({
