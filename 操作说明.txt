@@ -1,0 +1,61 @@
+
+一、启动sling
+
+    java -jar org.apache.sling.launchpad-8.jar  默认端口是 8080
+
+二、启动yisutech-cms.war
+
+   tomcat7以上，context为 "/", 访问路径: http://localhost:8080/
+
+
+三、打开首页
+
+   3.1 先上传附件，
+   3.2 附件确认
+       <data>
+       <item>
+             <operation-type>new</operation-type>
+             <process></process>
+             <activity></activity>
+             <person>/ORG01.ogn/PSN01@ORG01.psm</person>
+             <person-name>system</person-name>
+             <dept-name></dept-name>
+             <bill-id></bill-id>
+             <doc-id>C76A414580500001D1EE5B8014FA6710</doc-id>
+             <version>0</version>
+             <file-id></file-id>
+             <doc-version-id>null</doc-version-id>
+             <doc-name><![CDATA[jcr-content.htm]]></doc-name>
+             <kind>text/html</kind>
+             <size>5898.0</size>
+             <parent-id>9d0f322f-a9a6-4576-b539-e734431ab509</parent-id>
+             <doc-path>/defaultDocNameSpace/9d0f322f-a9a6-4576-b539-e734431ab509</doc-path>
+             <doc-display-path>/文档中心/attachmentDialog类型</doc-display-path>
+             <description></description>
+             <classification></classification>
+             <keywords></keywords>
+             <finish-time></finish-time>
+             <serial-number></serial-number>
+             <doc-type>attachment</doc-type>
+             <cache-name>1489937346323-DOC</cache-name>
+             <revision-cache-name></revision-cache-name>
+             <comment-file-content></comment-file-content>
+             <link-id></link-id>
+             <access-record-id></access-record-id>
+       </item>
+       </data>
+       更改内容: doc-name 为附件文件名，cache-name 为上传附件后得到的file-name
+
+   3.3 附件确认完后, 拿到 file-id
+
+四、附件查看
+
+    ${file-id} 为3.3拿到的file-id
+
+   4.1 查看附件
+
+        http://localhost:8088/DocServer/repository/fileinfo/{file-id}/last
+
+   4.2 下载附件
+
+        http://localhost:8088/DocServer/repository/file/view/{file-id}/last/content

@@ -11,7 +11,7 @@
 一、启动系统
 
    1） 先启动sling服务
-   2） 打包项目发布到tomcat7 +ß
+   2） 打包项目发布到tomcat7
 
 
 -Dantx.properties=/Users/guangzhong.wgz/antWorkSpace/yisutech-cms/antx.properties
