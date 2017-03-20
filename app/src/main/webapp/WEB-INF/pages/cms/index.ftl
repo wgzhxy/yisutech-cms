@@ -41,12 +41,12 @@
                             <input type="submit" value="附件提交确认"/>
                         </form>
                         <hr/>
-                        <form action="/DocServer/repository/fileinfo/122211111/last" method="post"
+                        <form action="/DocServer/repository/fileinfo/1490023540133-defaultDocNameSpace/last" method="post"
                               enctype="multipart/form-data">
                             <input type="submit" value="查看附件信息"/>
                         </form>
                         <hr/>
-                        <form action="/DocServer/repository/file/view/122211111/last/content" method="post"
+                        <form action="/DocServer/repository/file/view/1490023540133-defaultDocNameSpace/last/content" method="post"
                               enctype="multipart/form-data">
                             <input type="submit" value="查看附件"/>
                         </form>

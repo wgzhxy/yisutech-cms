@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.yishtech.erp.cms.biz.common.DateUtil;
 import com.yishtech.erp.cms.biz.common.Dom4jTools;
 import com.yishtech.erp.cms.biz.sling.HttpClientService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -66,13 +67,14 @@ public class AttachmentController {
         if (attachementInfo.get("operation-type").equals("new")) {
             // 保存文件到sling, 生成file-id, doc-version-id返回
             String path = request.getSession().getServletContext().getRealPath("upload") + File.separator + DateUtil.formatYYYYMMDD(DateUtil.getNowTime());
-            String fileName = (String) attachementInfo.get("cache-name");
+            String fileName = StringUtils.trim((String) attachementInfo.get("cache-name"));
 
             Map<String, File> upFiles = Maps.newHashMap();
-            upFiles.put("content", new File(path + File.separator + fileName));
+            upFiles.put(String.valueOf(attachementInfo.get("doc-name")), new File(path + File.separator + fileName));
 
-            String resource = attachementInfo.get("doc-path") + File.separator + "last";
-            httpClientService.postRequest(resource, attachementInfo);
+            String fileId = DateUtil.getNowTime().getTime() + "-defaultDocNameSpace";
+            String resource = File.separator + fileId + File.separator + "last";
+            httpClientService.postRequest(resource, attachementInfo, upFiles);
             // 提交内容
             String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     "<root>" +
@@ -85,7 +87,7 @@ public class AttachmentController {
                     "   <message>commit fileCache success</message>" +
                     "</root>";
             modelXml = xml.replace("${doc-id}", String.valueOf(attachementInfo.get("doc-id")))
-                    .replace("${file-id}", "")
+                    .replace("${file-id}", fileId)
                     .replace("${doc-version-id}", "1");
         } else if (attachementInfo.get("operation-type").equals("flagCommit")) {
             modelXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
