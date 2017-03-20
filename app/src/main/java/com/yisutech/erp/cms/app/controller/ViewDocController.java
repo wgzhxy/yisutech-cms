@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -25,9 +24,8 @@ public class ViewDocController {
     @Resource
     private HttpClientService httpClientService;
 
-    @ResponseBody
     @RequestMapping(value = "/fileinfo/{defaultDocNameSpace}/last")
-    public String viewLast(@PathVariable String defaultDocNameSpace) {
+    public void viewLast(@PathVariable String defaultDocNameSpace, HttpServletResponse response) {
         // 上传附件
         // 返回文档内容
         String lastContent = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
@@ -60,26 +58,26 @@ public class ViewDocController {
                 "    validateOnSave=\"true\" xmlns:ns=\"http://outerx.org/daisy/1.0\">" +
                 "   <ns:newChangeComment xsi:nil=\"true\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"/>" +
                 "   <ns:customFields>" +
-                "       <ns:customField name=\"sLastWriterName\" value=\"system\"/>" +
+                "       <ns:customField name=\"sLastWriterName\" value=\"${person-name}\"/>" +
                 "       <ns:customField name=\"sKeywords\" value=\"\"/>" +
                 "       <ns:customField name=\"sDescription\" value=\"\"/>" +
-                "       <ns:customField name=\"sDocPath\" value=\"/defaultDocNameSpace/9d0f322f-a9a6-4576-b539-e734431ab509\"/>" +
+                "       <ns:customField name=\"sDocPath\" value=\"${doc-path}\"/>" +
                 "       <ns:customField name=\"sClassification\" value=\"\"/>" +
                 "       <ns:customField name=\"sLastWriterDeptName\" value=\"\"/>" +
                 "       <ns:customField name=\"sFinishTime\" value=\"\"/>" +
-                "       <ns:customField name=\"sCreatorFID\" value=\"/ORG01.ogn/PSN01@ORG01.psm\"/>" +
+                "       <ns:customField name=\"sCreatorFID\" value=\"${person}\"/>" +
                 "       <ns:customField name=\"sDocSerialNumber\" value=\"\"/>" +
                 "       <ns:customField name=\"sEditorFID\" value=\"\"/>" +
                 "       <ns:customField name=\"VERSION\" value=\"0\"/>" +
-                "       <ns:customField name=\"sLastWriterFID\" value=\"/ORG01.ogn/PSN01@ORG01.psm\"/>" +
+                "       <ns:customField name=\"sLastWriterFID\" value=\"${person}\"/>" +
                 "       <ns:customField name=\"sEditorDeptName\" value=\"\"/>" +
                 "       <ns:customField name=\"sFlag\" value=\"1\"/>" +
                 "       <ns:customField name=\"sCreatorDeptName\" value=\"\"/>" +
-                "       <ns:customField name=\"sParentID\" value=\"9d0f322f-a9a6-4576-b539-e734431ab509\"/>" +
-                "       <ns:customField name=\"sCreatorName\" value=\"system\"/>" +
+                "       <ns:customField name=\"sParentID\" value=\"${parent-id}\"/>" +
+                "       <ns:customField name=\"sCreatorName\" value=\"${person-name}\"/>" +
                 "       <ns:customField name=\"sEditorName\" value=\"\"/>" +
-                "       <ns:customField name=\"sDocId\" value=\"C76A414580500001D1EE5B8014FA6710\"/>" +
-                "       <ns:customField name=\"sDocDisplayPath\" value=\"/文档中心/attachmentDialog类型\"/>" +
+                "       <ns:customField name=\"sDocId\" value=\"${doc-id}\"/>" +
+                "       <ns:customField name=\"sDocDisplayPath\" value=\"${doc-display-path}\"/>" +
                 "   </ns:customFields>" +
                 "   <ns:lockInfo hasLock=\"false\"/>" +
                 "   <ns:collectionIds/><ns:fields/>" +
@@ -88,30 +86,34 @@ public class ViewDocController {
                 "   </ns:parts>" +
                 "   <ns:links/>" +
                 "</ns:document>";
+        String retContent = "";
         try {
             String resourcePath = File.separator + defaultDocNameSpace + File.separator + "last.json";
             SlingResponse slingResponse = httpClientService.getRequest(resourcePath);
-            //System.out: {"jcr:primaryType":"nt:unstructured",
-            // "doc-version-id":"null",
-            // "operation-type":"new",
-            // "doc-id":"C76A414580500001D1EE5B8014FA6710",
-            // "doc-display-path":"%2F%E6%96%87%E6%A1%A3%E4%B8%AD%E5%BF%83%2FattachmentDialog%E7%B1%BB%E5%9E%8B",
-            // "person":"%2FORG01.ogn%2FPSN01%40ORG01.psm",
-            // "person-name":"system",
-            // "cache-name":"+1490022725743-DOC",
-            // "kind":"text%2Fhtml",
-            // "size":"5898.0",
-            // "version":"0",
-            // "doc-name":"%E5%A4%A9%E7%8C%AB%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E4%B9%8BABTest.pptx",
-            // "doc-path":"%2FdefaultDocNameSpace%2F9d0f322f-a9a6-4576-b539-e734431ab506",
-            // "doc-type":"attachment",
-            // "parent-id":"9d0f322f-a9a6-4576-b539-e734431ab506"}
-            System.out.println(slingResponse.getContent());
+            if (StringUtils.isNotBlank(slingResponse.getContent())) {
+                JSONObject json = JSON.parseObject(slingResponse.getContent());
+                lastContent = lastContent.replace("${person-name}", json.getString("person-name"))
+                        .replace("${doc-path}", json.getString("doc-path"))
+                        .replace("${person}", json.getString("person"))
+                        .replace("${parent-id}", json.getString("parent-id"))
+                        .replace("${doc-id}", json.getString("doc-id"))
+                        .replace("${doc-display-path}", json.getString("doc-display-path"));
+            }
         } catch (Throwable e) {
             e.printStackTrace();
         }
-        return lastContent;
-
+        try {
+            response.setContentType("application/xml");
+            response.getOutputStream().write(lastContent.getBytes(FwConstant.UTF_8));
+            response.getOutputStream().flush();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                response.getOutputStream().close();
+            } catch (Throwable e) {
+            }
+        }
     }
 
     @RequestMapping(value = "/file/view/{defaultDocNameSpace}/last/content")
