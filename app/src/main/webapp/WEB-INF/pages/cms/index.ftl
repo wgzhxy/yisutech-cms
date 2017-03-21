@@ -39,17 +39,6 @@
                             <textarea name="attachment" cols="80" rows="4"></textarea> <br/><br/>
                             <input type="submit" value="附件提交确认"/>
                         </form>
-                        <hr/>
-                        <form action="/DocServer/repository/fileinfo/1490026690958-defaultDocNameSpace/last" method="post"
-                              enctype="multipart/form-data">
-                            <input type="submit" value="查看附件信息"/>
-                        </form>
-                        <hr/>
-                        <form action="/DocServer/repository/file/view/1490026690958-defaultDocNameSpace/last/content" method="post"
-                              enctype="multipart/form-data">
-                            <input type="submit" value="查看附件"/>
-                        </form>
-                        <hr/>
                     </div>
                     <!-- /.panel-body -->
                 </div>
