@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.yishtech.erp.cms.biz.common.DateUtil;
 import com.yishtech.erp.cms.biz.common.Dom4jTools;
 import com.yishtech.erp.cms.biz.sling.HttpClientService;
+import com.yisutech.erp.cms.framework.http.SlingResponse;
 import com.yisutech.erp.cms.framework.utils.FwConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
@@ -33,9 +34,9 @@ public class AttachmentController {
     @ResponseBody
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public void upload(@RequestParam(value = "Filedata", required = false) MultipartFile file,
-                         @RequestParam(value = "filename", required = false) String filename,
-                         HttpServletRequest request,
-                         HttpServletResponse response, ModelMap model) {
+                       @RequestParam(value = "filename", required = false) String filename,
+                       HttpServletRequest request,
+                       HttpServletResponse response, ModelMap model) {
         // 上传附件
         String module = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>" +
                 "<file mediatype=\"${contentType}\" file-name=\"${fileName}\" fileSize=\"${fileSize}\"></file>" +
@@ -86,25 +87,30 @@ public class AttachmentController {
             String fileName = StringUtils.trim((String) attachementInfo.get("cache-name"));
 
             Map<String, File> upFiles = Maps.newHashMap();
-            upFiles.put(String.valueOf(attachementInfo.get("doc-name")), new File(path + File.separator + fileName));
+            upFiles.put(StringUtils.trim((String) attachementInfo.get("doc-name")), new File(path + File.separator + fileName));
+
 
             String fileId = DateUtil.getNowTime().getTime() + "-defaultDocNameSpace";
             String resource = File.separator + fileId + File.separator + "last";
-            httpClientService.postRequest(resource, attachementInfo, upFiles);
-            // 提交内容
-            String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
-                    "<root>" +
-                    "   <item>" +
-                    "       <doc-id>${doc-id}</doc-id>" +
-                    "       <file-id>${file-id}</file-id>" +
-                    "       <doc-version-id>${doc-version-id}</doc-version-id>" +
-                    "   </item>" +
-                    "   <flag>true</flag>" +
-                    "   <message>commit fileCache success</message>" +
-                    "</root>";
-            modelXml = xml.replace("${doc-id}", String.valueOf(attachementInfo.get("doc-id")))
-                    .replace("${file-id}", fileId)
-                    .replace("${doc-version-id}", "1");
+            SlingResponse slingResponse = httpClientService.postRequest(resource, attachementInfo, upFiles);
+            if (slingResponse.getStatusCode() == 201) {
+                // 提交内容
+                String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
+                        "<root>" +
+                        "   <item>" +
+                        "       <doc-id>${doc-id}</doc-id>" +
+                        "       <file-id>${file-id}</file-id>" +
+                        "       <doc-version-id>${doc-version-id}</doc-version-id>" +
+                        "   </item>" +
+                        "   <flag>true</flag>" +
+                        "   <message>commit fileCache success</message>" +
+                        "</root>";
+                modelXml = xml.replace("${doc-id}", String.valueOf(attachementInfo.get("doc-id")))
+                        .replace("${file-id}", fileId)
+                        .replace("${doc-version-id}", "1");
+            } else {
+                modelXml = slingResponse.getContent();
+            }
         } else if (attachementInfo.get("operation-type").equals("flagCommit")) {
             modelXml = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" +
                     "<root>" +

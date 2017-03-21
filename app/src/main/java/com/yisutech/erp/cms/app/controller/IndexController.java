@@ -4,8 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.Map;
 
 /**
  * Created by guangzhong.wgz on 17/2/18.
@@ -17,8 +21,8 @@ public class IndexController {
     private static Logger LOG = LoggerFactory.getLogger(IndexController.class);
 
     @RequestMapping("index")
-    public String home() {
-        LOG.info("/conf/index");
+    public String home(ModelMap model, HttpServletRequest request) {
+        model.put("contextPath", request.getContextPath());
         return "/cms/index";
     }
 

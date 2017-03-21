@@ -90,7 +90,7 @@ public class ViewDocController {
         try {
             String resourcePath = File.separator + defaultDocNameSpace + File.separator + "last.json";
             SlingResponse slingResponse = httpClientService.getRequest(resourcePath);
-            if (StringUtils.isNotBlank(slingResponse.getContent())) {
+            if (slingResponse.getStatusCode() == 200 && StringUtils.isNotBlank(slingResponse.getContent())) {
                 JSONObject json = JSON.parseObject(slingResponse.getContent());
                 lastContent = lastContent.replace("${person-name}", json.getString("person-name"))
                         .replace("${doc-path}", json.getString("doc-path"))
@@ -98,6 +98,8 @@ public class ViewDocController {
                         .replace("${parent-id}", json.getString("parent-id"))
                         .replace("${doc-id}", json.getString("doc-id"))
                         .replace("${doc-display-path}", json.getString("doc-display-path"));
+            } else {
+                retContent = slingResponse.getContent();
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -123,9 +125,23 @@ public class ViewDocController {
         String fileName = "";
         String resourcePath = File.separator + defaultDocNameSpace + File.separator + "last.json";
         SlingResponse slingResponse = httpClientService.getRequest(resourcePath);
-        if (StringUtils.isNotBlank(slingResponse.getContent())) {
+        if (slingResponse.getStatusCode() == 200 && StringUtils.isNotBlank(slingResponse.getContent())) {
             JSONObject json = JSON.parseObject(slingResponse.getContent());
             fileName = json.getString("doc-name");
+        } else {
+            try {
+                response.setCharacterEncoding(FwConstant.UTF_8);
+                response.setContentType("application/xml");
+                response.getOutputStream().write(slingResponse.getContent().getBytes(FwConstant.UTF_8));
+                response.getOutputStream().flush();
+            } catch (Throwable e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    response.getOutputStream().close();
+                } catch (Throwable e) {
+                }
+            }
         }
         String uri = FwConstant.SLING_SERVICE_URL + File.separator +
                 defaultDocNameSpace + File.separator +

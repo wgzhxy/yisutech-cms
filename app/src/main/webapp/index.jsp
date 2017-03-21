@@ -8,7 +8,7 @@
 <meta name="author" content="">
 <body>
 <script type="application/javascript">
-    window.location.href = "/home/index.html";
+    window.location.href = "<%=request.getContextPath()%>/home/index.html";
 </script>
 </body>
 </html>
