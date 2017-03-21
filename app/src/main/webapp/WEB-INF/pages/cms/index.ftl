@@ -40,9 +40,9 @@
                             <input type="submit" value="附件提交确认"/>
                         </form>
                         <hr/>
-                        附件查看: http://localhost:8088${contextPath}/DocServer/repository/fileinfo/{file-id}/last
+                        附件查看: http://www.yisutech.net${contextPath}/DocServer/repository/fileinfo/{file-id}/last
                         <hr/>
-                        附件下载: http://localhost:8088${contextPath}/DocServer/repository/file/view/{file-id}/last/content
+                        附件下载: http://www.yisutech.net${contextPath}/DocServer/repository/file/view/{file-id}/last/content
                     </div>
                     <!-- /.panel-body -->
                 </div>
