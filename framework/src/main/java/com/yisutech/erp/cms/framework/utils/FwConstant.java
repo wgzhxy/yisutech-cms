@@ -11,7 +11,7 @@ public class FwConstant {
     /**
      * Sling 服务URL
      */
-    public static String SLING_SERVICE_URL = "http://localhost:8080";
+    public static String SLING_SERVICE_URL = "http://www.yisutech.net:8080";
     /**
      * Sling 管理用户
      */
