@@ -39,6 +39,10 @@
                             <textarea name="attachment" cols="80" rows="4"></textarea> <br/><br/>
                             <input type="submit" value="附件提交确认"/>
                         </form>
+                        <hr />
+                        附件查看: http://localhost:8088/DocServer/repository/fileinfo/{file-id}/last
+                        <hr />
+                        附件下载: http://localhost:8088/DocServer/repository/file/view/{file-id}/last/content
                     </div>
                     <!-- /.panel-body -->
                 </div>
