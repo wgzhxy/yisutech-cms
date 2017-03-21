@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import com.yishtech.erp.cms.biz.common.DateUtil;
 import com.yishtech.erp.cms.biz.common.Dom4jTools;
 import com.yishtech.erp.cms.biz.sling.HttpClientService;
+import com.yisutech.erp.cms.framework.utils.FwConstant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.Map;
 
@@ -30,8 +32,10 @@ public class AttachmentController {
 
     @ResponseBody
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String upload(@RequestParam(value = "Filedata", required = false) MultipartFile file,
-                         @RequestParam(value = "filename", required = false) String filename, HttpServletRequest request, ModelMap model) {
+    public void upload(@RequestParam(value = "Filedata", required = false) MultipartFile file,
+                         @RequestParam(value = "filename", required = false) String filename,
+                         HttpServletRequest request,
+                         HttpServletResponse response, ModelMap model) {
         // 上传附件
         String module = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><root>" +
                 "<file mediatype=\"${contentType}\" file-name=\"${fileName}\" fileSize=\"${fileSize}\"></file>" +
@@ -55,12 +59,24 @@ public class AttachmentController {
         } else {
             module = module.replace("${contentType}", "").replace("${fileName}", "").replace("${fileSize}", String.valueOf(0));
         }
-        return module.toString();
+        try {
+            response.setCharacterEncoding(FwConstant.UTF_8);
+            response.setContentType("application/xml");
+            response.getOutputStream().write(module.getBytes(FwConstant.UTF_8));
+            response.getOutputStream().flush();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                response.getOutputStream().close();
+            } catch (Throwable e) {
+            }
+        }
     }
 
     @ResponseBody
     @RequestMapping(value = "/commit", method = RequestMethod.POST)
-    public String commit(@RequestParam String attachment, HttpServletRequest request) {
+    public void commit(@RequestParam String attachment, HttpServletRequest request, HttpServletResponse response) {
         // 解析xml文件内容
         Map<String, Object> attachementInfo = Dom4jTools.getDocumentValues(attachment, "//data/item");
         String modelXml = "";
@@ -96,6 +112,18 @@ public class AttachmentController {
                     "   <message>commit fileCache success</message>" +
                     "</root>";
         }
-        return modelXml;
+        try {
+            response.setCharacterEncoding(FwConstant.UTF_8);
+            response.setContentType("application/xml");
+            response.getOutputStream().write(modelXml.getBytes(FwConstant.UTF_8));
+            response.getOutputStream().flush();
+        } catch (Throwable e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                response.getOutputStream().close();
+            } catch (Throwable e) {
+            }
+        }
     }
 }

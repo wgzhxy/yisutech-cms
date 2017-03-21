@@ -103,6 +103,7 @@ public class ViewDocController {
             e.printStackTrace();
         }
         try {
+            response.setCharacterEncoding(FwConstant.UTF_8);
             response.setContentType("application/xml");
             response.getOutputStream().write(lastContent.getBytes(FwConstant.UTF_8));
             response.getOutputStream().flush();

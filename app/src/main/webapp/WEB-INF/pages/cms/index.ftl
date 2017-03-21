@@ -31,7 +31,6 @@
                         <form action="/DocServer/repository/file/cache/upload" method="post"
                               enctype="multipart/form-data">
                             <input type="file" name="Filedata"/> <br/>
-                            <input type="text" name="filename"/> <br/><br/>
                             <input type="submit" value="上传附件"/>
                         </form>
                         <hr/>
