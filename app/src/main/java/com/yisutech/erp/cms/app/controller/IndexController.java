@@ -1,6 +1,7 @@
 package com.yisutech.erp.cms.app.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.yisutech.erp.cms.framework.utils.FwConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,7 @@ public class IndexController {
     @RequestMapping("index")
     public String home(ModelMap model, HttpServletRequest request) {
         model.put("contextPath", request.getContextPath());
+        model.put("slingUrl", FwConstant.SLING_SERVICE_URL);
         return "/cms/index";
     }
 
