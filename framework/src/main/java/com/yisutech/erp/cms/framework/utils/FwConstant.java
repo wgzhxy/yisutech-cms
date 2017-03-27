@@ -1,5 +1,7 @@
 package com.yisutech.erp.cms.framework.utils;
 
+import sun.util.resources.th.CalendarData_th;
+
 /**
  * Created by guangzhong.wgz on 17/2/20.
  */
@@ -25,4 +27,15 @@ public class FwConstant {
      * uri
      */
     public static final String REQUEST_URI = "request_uri";
+
+    static {
+        try {
+            PropertiesUtil propertiesUtil = new PropertiesUtil("cms-conf");
+            SLING_SERVICE_URL = propertiesUtil.get("cms.sling.url");
+            System.out.print(SLING_SERVICE_URL);
+
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
 }
