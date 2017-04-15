@@ -5,7 +5,7 @@
  * use it only in accordance with the terms of the license agreement you entered
  * into with Alibaba.com.
  */
-package com.yishtech.erp.cms.biz.common;
+package com.yisutech.erp.cms.biz.common;
 
 import org.apache.commons.lang3.StringUtils;
 

@@ -1,4 +1,4 @@
-import com.yishtech.erp.cms.biz.common.Dom4jTools;
+import com.yisutech.erp.cms.biz.common.Dom4jTools;
 import org.dom4j.Document;
 import org.dom4j.Element;
 import org.junit.Test;

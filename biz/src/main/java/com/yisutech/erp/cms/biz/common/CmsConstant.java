@@ -1,4 +1,4 @@
-package com.yishtech.erp.cms.biz.common;
+package com.yisutech.erp.cms.biz.common;
 
 /**
  * Created by guangzhong.wgz on 17/2/20.

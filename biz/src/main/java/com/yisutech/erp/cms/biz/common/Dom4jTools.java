@@ -1,4 +1,4 @@
-package com.yishtech.erp.cms.biz.common;
+package com.yisutech.erp.cms.biz.common;
 
 import com.google.common.collect.Maps;
 import org.apache.commons.lang3.StringUtils;
