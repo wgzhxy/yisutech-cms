@@ -1,4 +1,4 @@
-package com.yishtech.erp.cms.biz.sling;
+package com.yisutech.erp.cms.core.sling;
 
 import com.yisutech.erp.cms.framework.http.SlingResponse;
 

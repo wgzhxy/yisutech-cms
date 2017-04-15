@@ -1,7 +1,7 @@
-package com.yishtech.erp.cms.biz.sling.impl;
+package com.yisutech.erp.cms.core.sling.impl;
 
 import com.alibaba.fastjson.JSON;
-import com.yishtech.erp.cms.biz.sling.HttpClientService;
+import com.yisutech.erp.cms.core.sling.HttpClientService;
 import com.yisutech.erp.cms.framework.http.HttpClientUtil;
 import com.yisutech.erp.cms.framework.http.SlingResponse;
 import com.yisutech.erp.cms.framework.utils.FwConstant;

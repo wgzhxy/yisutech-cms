@@ -1,17 +1,26 @@
-package com.yishtech.erp.cms.biz.sling;
+package com.yisutech.erp.cms.core.sling.impl;
 
-import com.yishtech.erp.cms.biz.sling.dataobject.SlingEnum;
+import com.yisutech.erp.cms.core.sling.HttpClientService;
+import com.yisutech.erp.cms.core.sling.SlingAttachmentService;
+import com.yisutech.erp.cms.core.sling.dataobject.SlingEnum;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 /**
- * sling 增删改查
+ * sling附件上传方问接口
  * <p>
  * Created by guangzhong.wgz on 17/2/20.
  *
  * @author guangzhong.wgz
  */
-public interface SlingAttachmentService {
+@Service
+public class SlingAttachmentServiceImpl implements SlingAttachmentService {
+
+    @Resource
+    private HttpClientService httpClientService;
+
 
     /**
      * 查看文档
@@ -20,7 +29,10 @@ public interface SlingAttachmentService {
      * @param resourcePath 资源路径
      * @param version      版本
      */
-    public String viewfileInfo(SlingEnum.PartType partType, String resourcePath, String version);
+    @Override
+    public String viewfileInfo(SlingEnum.PartType partType, String resourcePath, String version) {
+        return null;
+    }
 
     /**
      * 保存文档
@@ -32,10 +44,11 @@ public interface SlingAttachmentService {
      *                     <?xml version="1.0" encoding="UTF-8"?>
      *                     <root>
      *                     <file mediatype="text/html" file-name="1-DOC" fileSize="5898"></file>
-     *                     </root>
      */
-    public String savefileInfo(SlingEnum.PartType partType, String resourcePath, String version,
-                               Map<String, Object> properties);
+    @Override
+    public String savefileInfo(SlingEnum.PartType partType, String resourcePath, String version, Map<String, Object> properties) {
+        return null;
+    }
 
     /**
      * @param resourcePath 资源存府url
@@ -53,8 +66,9 @@ public interface SlingAttachmentService {
      *                     <root>
      *                     <flag>true</flag>
      *                     <message>commit fileCache success</message>
-     *                     </root>
      */
-    public String commitCacheFile(String resourcePath, Map<String, Object> properties);
-
+    @Override
+    public String commitCacheFile(String resourcePath, Map<String, Object> properties) {
+        return null;
+    }
 }

@@ -3,7 +3,7 @@ package com.yisutech.erp.cms.app.controller;
 import com.google.common.collect.Maps;
 import com.yishtech.erp.cms.biz.common.DateUtil;
 import com.yishtech.erp.cms.biz.common.Dom4jTools;
-import com.yishtech.erp.cms.biz.sling.HttpClientService;
+import com.yisutech.erp.cms.core.sling.HttpClientService;
 import com.yisutech.erp.cms.framework.http.SlingResponse;
 import com.yisutech.erp.cms.framework.utils.FwConstant;
 import org.apache.commons.lang3.StringUtils;

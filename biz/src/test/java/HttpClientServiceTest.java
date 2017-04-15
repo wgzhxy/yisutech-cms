@@ -1,8 +1,8 @@
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.collect.Maps;
-import com.yishtech.erp.cms.biz.sling.HttpClientService;
-import com.yishtech.erp.cms.biz.sling.impl.HttpClientServiceImpl;
+import com.yisutech.erp.cms.core.sling.HttpClientService;
+import com.yisutech.erp.cms.core.sling.impl.HttpClientServiceImpl;
 import com.yisutech.erp.cms.framework.http.SlingResponse;
 import com.yisutech.erp.cms.framework.utils.FwConstant;
 import org.junit.Test;

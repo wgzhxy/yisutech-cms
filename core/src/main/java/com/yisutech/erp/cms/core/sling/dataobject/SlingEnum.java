@@ -1,4 +1,4 @@
-package com.yishtech.erp.cms.biz.sling.dataobject;
+package com.yisutech.erp.cms.core.sling.dataobject;
 
 /**
  * Created by guangzhong.wgz on 17/3/12.
