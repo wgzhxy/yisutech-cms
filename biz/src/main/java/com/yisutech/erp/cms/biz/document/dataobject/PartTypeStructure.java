@@ -13,6 +13,8 @@ public class PartTypeStructure {
     String lastmodifier;
     String deprecated;
 
+
+
     public String getId() {
         return id;
     }
